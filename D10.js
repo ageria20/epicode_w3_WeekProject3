@@ -509,13 +509,6 @@ halfTree(3);
 
 */
 
-const tree = (num) => {
-  let star = "*";
-  for (let i = 0; i < num; i++) {
-    console.log((star += " "));
-  }
-};
-tree(3);
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
