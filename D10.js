@@ -93,7 +93,7 @@ console.log(splitMe("I Love Coding"));
 
 const deleteOne = (string, boolean) => {
   if (boolean === true) return string.slice(1);
-  else return string.slice(string.lenth-1, -1);
+  else return string.slice(string.lenth - 1, -1);
 };
 console.log(deleteOne("Ciao a tutti", true));
 
@@ -102,38 +102,45 @@ console.log(deleteOne("Ciao a tutti", true));
 
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
-const onlyLetters  = (string) => string.replace(/\d+/g, "")
+const onlyLetters = (string) => string.replace(/\d+/g, "");
 
-console.log(onlyLetters("I have 4 dogs"))
+console.log(onlyLetters("I have 4 dogs"));
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
 */
 
 const isThisAnEmail = (string) => {
-  if (string.includes("@") === true) return true
-  else return false
-}
-console.log(isThisAnEmail("ageria@gmail.com"))
+  if (string.includes("@") === true) return true;
+  else return false;
+};
+console.log(isThisAnEmail("ageria@gmail.com"));
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
 */
 
 const whatDayIsIt = () => {
-  const date = new Date()
-  const toDay = date.getDay()
-  switch(toDay) {
-    case 1: return "Lunedì"
-    case 2: return "Martedì"
-    case 3: return "Mercoledì"
-    case 4: return "Giovedì"
-    case 5: return "Venerdì"
-    case 6: return "Sabato"
-    case 7: return "Domenica"
+  const date = new Date();
+  const toDay = date.getDay();
+  switch (toDay) {
+    case 1:
+      return "Lunedì";
+    case 2:
+      return "Martedì";
+    case 3:
+      return "Mercoledì";
+    case 4:
+      return "Giovedì";
+    case 5:
+      return "Venerdì";
+    case 6:
+      return "Sabato";
+    case 7:
+      return "Domenica";
   }
-  return toDay
-}
+  return toDay;
+};
 
-console.log(whatDayIsIt())
+console.log(whatDayIsIt());
 
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
@@ -149,55 +156,49 @@ console.log(whatDayIsIt())
 */
 
 const rollTheDices = (num) => {
-
+  let diceObj = {
+    sum: 0,
+    values: [],
+  };
+  for (let i = 0; i < num; i++) {
+    let add = dice();
+    console.log(add);
+    diceObj.sum += add;
+    diceObj.values.push(add);
+  }
+  return diceObj;
+};
+console.log(rollTheDices(3));
 /* ESERCIZIO 9
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
 */
 
 // TODO: usare un altro apporccio
 const howManyDays = (date) => {
-  const dateArray = date.split(" ")
-  console.log(dateArray)
-  const getDate = new Date()
-  const gg = dateArray[1]
-  const mm = dateArray[2]
-  const yyyy = dateArray[3]
-  const diffArr = []
-  const getDay = getDate.getDate()
-  const getMonth = getDate.getMonth() + 1
-  const getYear = getDate.getFullYear()
-  const diffYear = parseInt(yyyy) - getYear
-  diffArr.push(diffYear)
-  const diffMonth = parseInt(mm) - getMonth
-  diffArr.push(diffMonth)
-  const diffDay = parseInt(gg) - getDay
-  diffArr.push(diffDay) 
-  
-  console.log(dateArray)
-  
-}
-howManyDays("30 4 2025")
+  const today = new Date();
+  const gotDate = new Date(date);
+  const diffTime = today - gotDate;
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays;
+};
+console.log(howManyDays("30-4-2025"));
 
-console.log(new Date(2024, 10, 10))
-console.log(howManyDays(new Date(2024, 10, 10)))
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
 */
 
 const isTodayMyBirthday = () => {
-  const getDate = new Date()
-  const getDay = getDate.getDate()
-  const getMonth = getDate.getMonth() + 1
-  const today = getDay.toString() + " " + getMonth.toString()
-  console.log(today)
-  const myBirthday = "30 4"
-  if (today === myBirthday) console.log(true)
-  else console.log(true)
-}
-isTodayMyBirthday()
+  const getDate = new Date();
+  const today = getDate.getDay();
+  const currMonth = getDate.getMonth() + 1;
+  if (today === 30 && currMonth === 4) return true;
+  else false;
+};
+console.log(isTodayMyBirthday());
 // Arrays & Oggetti
 
 // NOTA: l'array "movies" usato in alcuni esercizi è definito alla fine di questo file
+/* Questo array viene usato per gli esercizi. Non modificarlo. */
 const movies = [
   {
     Title: "The Lord of the Rings: The Fellowship of the Ring",
@@ -319,100 +320,100 @@ const movies = [
 */
 
 const deleteProp = (object, string) => {
-  let newObj = {...object}
-  delete newObj[string]
-  return newObj
-}
+  let newObj = { ...object };
+  delete newObj[string];
+  return newObj;
+};
 
-console.log(deleteProp(movies[0], "Title"))
+console.log(deleteProp(movies[0], "Title"));
 
 /* ESERCIZIO 12
   Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
 */
 
 const newestMovie = (movie) => {
-  let countMovies = movie[0]
-  for(let i=0; i < movies.length; i++){
-    if(movie[i].Year > countMovies.Year) countMovies = movie[i]
+  let countMovies = movie[0];
+  for (let i = 0; i < movies.length; i++) {
+    if (movie[i].Year > countMovies.Year) countMovies = movie[i];
   }
-  return countMovies
-}
-console.log(newestMovie(movies))
+  return countMovies;
+};
+console.log(newestMovie(movies));
 /* ESERCIZIO 13
   Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
 */
 
 const countMovies = (movies) => {
-  let sumMovies = 0
-  movies.forEach(movie => {
-    if(movie.Type === "movie") sumMovies++
+  let sumMovies = 0;
+  movies.forEach((movie) => {
+    if (movie.Type === "movie") sumMovies++;
   });
-  return sumMovies
-}
-console.log(countMovies(movies))
+  return sumMovies;
+};
+console.log(countMovies(movies));
 /* ESERCIZIO 14
   Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
 */
 
 const onlyTheYears = (movies) => {
-  return movies.map(movie => movie.Year)
-}
-console.log(onlyTheYears(movies))
+  return movies.map((movie) => movie.Year);
+};
+console.log(onlyTheYears(movies));
 /* ESERCIZIO 15
   Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
 */
-// TODO: controllare perche escono undefined gli altri
+
 const onlyInLastMillennium = (movies) => {
-  return movies.filter(movie => {
-    if(movie.Year < 2000) return movie
-  });
-}
-console.log(onlyInLastMillennium(movies))
+  return movies.filter((movie) => movie.Year < 2000);
+};
+
+console.log(onlyInLastMillennium(movies));
 /* ESERCIZIO 16
   Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
 */
 
 const sumAllTheYears = (movies) => {
-  let sumYears = 0
-  movies.forEach(movie => sumYears = sumYears + parseInt(movie.Year));
-  return sumYears
-} 
-console.log(sumAllTheYears(movies))
+  let sumYears = 0;
+  movies.forEach((movie) => (sumYears = sumYears + parseInt(movie.Year)));
+  return sumYears;
+};
+console.log(sumAllTheYears(movies));
 /* ESERCIZIO 17
   Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
 */
 
 const searchByTitle = (string) => {
-  return movies.filter(movie => movie.Title.includes(string))
-}
-console.log(searchByTitle("Avengers: Endgame"))
+  return movies.filter((movie) => movie.Title.includes(string));
+};
+console.log(searchByTitle("Avengers: Endgame"));
 /* ESERCIZIO 18
   Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
 
 const searchAndDivide = (string) => {
-  let contArr = []
-  let match = []
-  let unmatch = []
-  movies.forEach(movie => {
-    if(movie.Title === string) match.push(movie)
-      else unmatch.push(movie)
+  let objCont = {
+    match: [],
+    unmatch: [],
+  };
+
+  movies.forEach((movie) => {
+    if (movie.Title === string) objCont.match.push(movie);
+    else objCont.unmatch.push(movie);
   });
-  contArr.push(match)
-  contArr.push(unmatch)
-  return contArr
-}
-console.log(searchAndDivide("Avengers: Endgame"))
+
+  return objCont;
+};
+console.log(searchAndDivide("Endgame"));
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
 
 const removeIndex = (numIndex, movies) => {
-  if(numIndex >= 0 && numIndex < movies.length) movies.splice(numIndex, 1)
-    return movies
-}
-console.log(removeIndex(5, movies))
+  if (numIndex >= 0 && numIndex < movies.length) movies.splice(numIndex, 1);
+  return movies;
+};
+console.log(removeIndex(5, movies));
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
 
@@ -420,31 +421,58 @@ console.log(removeIndex(5, movies))
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
 
-const selectID = () =>
+const selectID = () => (element = document.getElementById("container"));
 
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
 
+const selectTdTags = () => (element = document.getElementsByName("td"));
+
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
+
+const printTdCont = () => {
+  selectTdTags.forEach((element) => console.log(element.inneText));
+};
 
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
 
+const addBgColor = () => {
+  const anchorsRed = document.querySelectorAll("a");
+  anchorsRed.forEach((a) => (a.style.backgroundColor = "red"));
+};
+
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
+
+const addList = () => {
+  const list = document.getElementById("myList");
+  const item = document.createElement("li");
+  list.appendChild(item);
+};
 
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
 
+const getEmpty = () => {
+  const ul = document.getElementById("myList");
+  ul.innerHTML = "";
+};
+console.log(getEmpty());
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
+
+const addClass = () => {
+  const tr = document.querySelectorAll("tr");
+  tr.classlist.add("test");
+};
 
 // [EXTRA] JS Avanzato
 
@@ -460,6 +488,16 @@ const selectID = () =>
 
 */
 
+const halfTree = (num) => {
+  let star = "*";
+  for (let i = 0; i < num; i++) {
+    console.log(star);
+    for (let y = 0; y < i; y++) {
+      console.log((star += ""));
+    }
+  }
+};
+halfTree(3);
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
 
@@ -475,121 +513,3 @@ const selectID = () =>
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
-
-/* Questo array viene usato per gli esercizi. Non modificarlo. */
-
-const movies = [
-  {
-    Title: "The Lord of the Rings: The Fellowship of the Ring",
-    Year: "2001",
-    imdbID: "tt0120737",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg",
-  },
-
-  {
-    Title: "The Lord of the Rings: The Return of the King",
-    Year: "2003",
-    imdbID: "tt0167260",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-  },
-  {
-    Title: "The Lord of the Rings: The Two Towers",
-    Year: "2002",
-    imdbID: "tt0167261",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BNGE5MzIyNTAtNWFlMC00NDA2LWJiMjItMjc4Yjg1OWM5NzhhXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-  },
-  {
-    Title: "Lord of War",
-    Year: "2005",
-    imdbID: "tt0399295",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMTYzZWE3MDAtZjZkMi00MzhlLTlhZDUtNmI2Zjg3OWVlZWI0XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg",
-  },
-  {
-    Title: "Lords of Dogtown",
-    Year: "2005",
-    imdbID: "tt0355702",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BNDBhNGJlOTAtM2ExNi00NmEzLWFmZTQtYTZhYTRlNjJjODhmXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg",
-  },
-  {
-    Title: "The Lord of the Rings",
-    Year: "1978",
-    imdbID: "tt0077869",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BOGMyNWJhZmYtNGQxYi00Y2ZjLWJmNjktNTgzZWJjOTg4YjM3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
-  },
-  {
-    Title: "Lord of the Flies",
-    Year: "1990",
-    imdbID: "tt0100054",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BOTI2NTQyODk0M15BMl5BanBnXkFtZTcwNTQ3NDk0NA@@._V1_SX300.jpg",
-  },
-  {
-    Title: "The Lords of Salem",
-    Year: "2012",
-    imdbID: "tt1731697",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMjA2NTc5Njc4MV5BMl5BanBnXkFtZTcwNTYzMTcwOQ@@._V1_SX300.jpg",
-  },
-  {
-    Title: "Greystoke: The Legend of Tarzan, Lord of the Apes",
-    Year: "1984",
-    imdbID: "tt0087365",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMTM5MzcwOTg4MF5BMl5BanBnXkFtZTgwOTQwMzQxMDE@._V1_SX300.jpg",
-  },
-  {
-    Title: "Lord of the Flies",
-    Year: "1963",
-    imdbID: "tt0057261",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BOGEwYTlhMTgtODBlNC00ZjgzLTk1ZmEtNmNkMTEwYTZiM2Y0XkEyXkFqcGdeQXVyMzU4Nzk4MDI@._V1_SX300.jpg",
-  },
-  {
-    Title: "The Avengers",
-    Year: "2012",
-    imdbID: "tt0848228",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-  },
-  {
-    Title: "Avengers: Infinity War",
-    Year: "2018",
-    imdbID: "tt4154756",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg",
-  },
-  {
-    Title: "Avengers: Age of Ultron",
-    Year: "2015",
-    imdbID: "tt2395427",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMTM4OGJmNWMtOTM4Ni00NTE3LTg3MDItZmQxYjc4N2JhNmUxXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX300.jpg",
-  },
-  {
-    Title: "Avengers: Endgame",
-    Year: "2019",
-    imdbID: "tt4154796",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
-  },
-];
