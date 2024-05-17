@@ -181,7 +181,7 @@ const howManyDays = (date) => {
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   return diffDays;
 };
-console.log(howManyDays("30-4-2025"));
+console.log(howManyDays(30 - 4 - 2025));
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
@@ -189,10 +189,12 @@ console.log(howManyDays("30-4-2025"));
 
 const isTodayMyBirthday = () => {
   const getDate = new Date();
-  const today = getDate.getDay();
-  const currMonth = getDate.getMonth() + 1;
+  const today = getDate.getDate();
+  console.log(today)
+  const currMonth = getDate.getMonth();
+  console.log(currMonth)
   if (today === 30 && currMonth === 4) return true;
-  else false;
+  else return false;
 };
 console.log(isTodayMyBirthday());
 // Arrays & Oggetti
@@ -489,12 +491,9 @@ const addClass = () => {
 */
 
 const halfTree = (num) => {
-  let star = "*";
+  let star = "";
   for (let i = 0; i < num; i++) {
-    console.log(star);
-    for (let y = 0; y < i; y++) {
-      console.log((star += ""));
-    }
+    console.log(star += "*");
   }
 };
 halfTree(3);
@@ -509,6 +508,11 @@ halfTree(3);
   *****
 
 */
+
+const tree = () => {
+  let star = ""
+  for(let i=0; )
+};
 
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
