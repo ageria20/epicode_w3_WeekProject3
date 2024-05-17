@@ -190,9 +190,9 @@ console.log(howManyDays(30 - 4 - 2025));
 const isTodayMyBirthday = () => {
   const getDate = new Date();
   const today = getDate.getDate();
-  console.log(today)
+  console.log(today);
   const currMonth = getDate.getMonth();
-  console.log(currMonth)
+  console.log(currMonth);
   if (today === 30 && currMonth === 4) return true;
   else return false;
 };
@@ -493,7 +493,7 @@ const addClass = () => {
 const halfTree = (num) => {
   let star = "";
   for (let i = 0; i < num; i++) {
-    console.log(star += "*");
+    console.log((star += "*"));
   }
 };
 halfTree(3);
@@ -509,11 +509,13 @@ halfTree(3);
 
 */
 
-const tree = () => {
-  let star = ""
-  for(let i=0; )
+const tree = (num) => {
+  let star = "*";
+  for (let i = 0; i < num; i++) {
+    console.log((star += " "));
+  }
 };
-
+tree(3);
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
